@@ -1,0 +1,48 @@
+:root {
+  --bm-1: #dbe9ff;
+  --bm-2: #c2dbff;
+}
+:root[data-theme="dark"] {
+  --bm-1: #1c2c47;
+  --bm-2: #16243a;
+}
+
+.bm {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.bm__body > * {
+  fill: url(#bmSkin);
+  stroke: var(--line-2);
+  stroke-width: 1;
+}
+
+.bm__zone {
+  cursor: pointer;
+  outline: none;
+}
+.bm__zone > * {
+  fill: transparent;
+  stroke: transparent;
+  stroke-width: 1.5;
+  transition: fill 0.2s var(--ease), stroke 0.2s var(--ease);
+}
+.bm__zone:hover > * {
+  fill: rgba(45, 125, 246, 0.25);
+  stroke: var(--brand-500);
+}
+.bm__zone:focus-visible > * {
+  fill: rgba(45, 125, 246, 0.2);
+  stroke: var(--brand-500);
+}
+.bm__zone--on > * {
+  fill: rgba(45, 125, 246, 0.45);
+  stroke: var(--brand-600);
+  stroke-width: 2;
+}

@@ -1,0 +1,81 @@
+.chk {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+}
+@media (min-width: 900px) {
+  .chk { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); }
+}
+
+.chk__map { position: sticky; top: 90px; }
+@media (max-width: 899px) { .chk__map { position: static; } }
+
+.chk__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+/* ---------------- severity ---------------- */
+.chk__sev { display: flex; gap: 8px; }
+.chk__sev button {
+  flex: 1;
+  height: 46px;
+  border-radius: var(--r-sm);
+  border: 1.5px solid var(--line);
+  background: var(--surface-2);
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--text-3);
+  transition: all 0.18s var(--ease);
+}
+.chk__sev button[data-on="true"] { color: #fff; border-color: transparent; }
+.chk__sev button[data-on="true"][data-level="1"] { background: #1f7a35; }
+.chk__sev button[data-on="true"][data-level="2"] { background: #5c7a1e; }
+.chk__sev button[data-on="true"][data-level="3"] { background: #8a5a00; }
+.chk__sev button[data-on="true"][data-level="4"] { background: #b24a18; }
+.chk__sev button[data-on="true"][data-level="5"] { background: #c62a2f; }
+
+/* ---------------- result ---------------- */
+.chk__block {
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+}
+.chk__block:first-of-type { border-top: none; padding-top: 0; }
+.chk__block h4 { margin-bottom: 9px; }
+
+.chk__list li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 14px;
+  color: var(--text-2);
+  margin-bottom: 6px;
+}
+.chk__list li::before {
+  content: "";
+  position: absolute;
+  left: 4px; top: 9px;
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--link);
+}
+
+.chk__spec {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 14px;
+  border-radius: var(--r-md);
+  background: var(--surface-3);
+}
+.chk__spec > div:first-of-type { flex: 1; }
+.chk__specIcon { font-size: 26px; }
+
+.chk__urgent {
+  border-color: rgba(229, 72, 77, 0.35);
+  background: linear-gradient(135deg, #fff2f1, #ffe6e5);
+}
+:root[data-theme="dark"] .chk__urgent {
+  background: linear-gradient(135deg, rgba(229,72,77,.14), rgba(229,72,77,.06));
+}

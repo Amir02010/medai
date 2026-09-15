@@ -1,0 +1,24 @@
+{
+  "short_name": "MedAI",
+  "name": "MedAI — умный помощник по здоровью",
+  "description": "Разбор симптомов, аптеки рядом, запись к врачу и напоминания о лекарствах. UZ · RU · EN.",
+  "lang": "ru",
+  "icons": [
+    { "src": "favicon.ico", "sizes": "16x16 32x32 48x48 64x64", "type": "image/x-icon" },
+    { "src": "logo192.png", "type": "image/png", "sizes": "192x192", "purpose": "any" },
+    { "src": "logo512.png", "type": "image/png", "sizes": "512x512", "purpose": "any" },
+    { "src": "logo-maskable.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" }
+  ],
+  "start_url": "/home",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#2d7df6",
+  "background_color": "#f4f8ff",
+  "categories": ["health", "medical", "lifestyle"],
+  "shortcuts": [
+    { "name": "AI", "url": "/assistant" },
+    { "name": "Dorixona", "url": "/pharmacies" },
+    { "name": "Dorilar", "url": "/meds" }
+  ]
+}

@@ -1,0 +1,31 @@
+.regionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 13px;
+  min-height: 40px;
+  border-radius: var(--r-pill);
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text);
+  max-width: 100%;
+  transition: border-color 0.18s var(--ease), color 0.18s var(--ease);
+}
+.regionBtn:hover { border-color: var(--brand-300); color: var(--link); }
+.regionBtn svg:first-child { color: var(--link); flex-shrink: 0; }
+.regionBtn svg:last-child { color: var(--text-3); flex-shrink: 0; }
+.regionBtn span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+.regionBtn--compact { padding: 7px 11px; min-height: 36px; font-size: 12.5px; }
+
+.regionList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}

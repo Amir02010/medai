@@ -1,0 +1,237 @@
+/* ============================================================
+   AppShell — боковая навигация на десктопе, таббар на телефоне
+   ============================================================ */
+
+.shell {
+  min-height: 100dvh;
+  display: flex;
+  max-width: 100vw;
+  overflow-x: clip;
+}
+
+/* ---------------- side rail (desktop) ---------------- */
+.rail {
+  display: none;
+  width: var(--rail);
+  flex-shrink: 0;
+  padding: 22px 16px;
+  border-right: 1px solid var(--line);
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rail__logo {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 6px 10px 20px;
+}
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 13px;
+  border-radius: var(--r-sm);
+  font-weight: 600;
+  font-size: 14.5px;
+  color: var(--text-2);
+  transition: all 0.18s var(--ease);
+  position: relative;
+}
+.navItem:hover { background: var(--surface-3); color: var(--text); }
+.navItem svg { font-size: 21px; flex-shrink: 0; }
+.navItem--on {
+  background: var(--brand-50);
+  color: var(--link);
+}
+.navItem--on::before {
+  content: "";
+  position: absolute;
+  left: -16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 22px;
+  border-radius: 0 3px 3px 0;
+  background: var(--link);
+}
+:root[data-theme="dark"] .navItem--on { background: rgba(45, 125, 246, 0.14); }
+
+.rail__spacer { flex: 1; }
+
+.rail__pro {
+  background: linear-gradient(135deg, var(--brand-600), #123a86);
+  color: #fff;
+  border-radius: var(--r-md);
+  padding: 16px;
+  margin-top: 10px;
+}
+.rail__pro h4 { color: #fff; font-size: 14.5px; }
+.rail__pro p { color: rgba(255, 255, 255, 0.75); font-size: 12.5px; margin: 4px 0 12px; }
+
+/* ---------------- main ---------------- */
+.shell__main {
+  flex: 1;
+  min-width: 0;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: calc(10px + var(--safe-t)) 16px 10px;
+  background: var(--glass-strong);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  border-bottom: 1px solid var(--line);
+  min-width: 0;
+}
+.topbar__title {
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: -0.02em;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.page {
+  flex: 1;
+  width: 100%;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 20px 16px calc(var(--tabbar) + 28px + var(--safe-b));
+}
+.page--flush {
+  padding: 0;
+  max-width: none;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* ---------------- tabbar (mobile) ---------------- */
+.tabbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 80;
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  gap: 2px;
+  padding: 8px 8px calc(8px + var(--safe-b));
+  background: var(--glass-strong);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border-top: 1px solid var(--line);
+}
+.tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 6px 2px;
+  border-radius: var(--r-sm);
+  color: var(--text-3);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  transition: color 0.18s var(--ease), background 0.18s var(--ease);
+  min-width: 0;
+}
+.tab span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; }
+.tab svg { font-size: 22px; transition: transform 0.22s var(--ease); }
+.tab--on { color: var(--link); }
+.tab--on svg { transform: translateY(-1px) scale(1.06); }
+
+.tab--fab {
+  flex: 0 0 auto;
+  width: 56px;
+  align-self: center;
+}
+.tab--fab .tab__fab {
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #2168df, #1a5cc8);
+  color: #fff;
+  font-size: 25px;
+  box-shadow: var(--sh-brand);
+  margin-top: -20px;
+  border: 3px solid var(--surface);
+  transition: transform 0.2s var(--ease);
+}
+.tab--fab:active .tab__fab { transform: scale(0.94); }
+
+/* ---------------- responsive ---------------- */
+@media (min-width: 960px) {
+  .rail { display: flex; }
+  .tabbar { display: none; }
+  .page { padding: 28px 32px 40px; }
+  .topbar { padding: 16px 32px; background: transparent; border-bottom: none; backdrop-filter: none; }
+  .topbar__mark { display: none; }
+  .topbar__title { font-size: 22px; }
+}
+
+/* Telegram Mini App: убираем лишний хром */
+.shell[data-tg="true"] .topbar__mark { display: none; }
+
+/* ---------------- lang switch ---------------- */
+.langSwitch {
+  display: flex;
+  gap: 2px;
+  background: var(--surface-3);
+  border-radius: var(--r-pill);
+  padding: 3px;
+}
+.langSwitch button {
+  padding: 8px 11px;
+  min-height: 34px;
+  border-radius: var(--r-pill);
+  font-size: 11.5px;
+  font-weight: 800;
+  color: var(--text-2);
+  transition: all 0.18s var(--ease);
+}
+.langSwitch button[data-on="true"] {
+  background: var(--surface);
+  color: var(--link);
+  box-shadow: var(--sh-1);
+}
+
+/* ---------------- disclaimer bar ---------------- */
+.disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: var(--r-sm);
+  background: var(--warn-100);
+  color: #6b4400;
+  font-size: 12.5px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+.disclaimer svg { flex-shrink: 0; font-size: 17px; margin-top: 1px; }
+:root[data-theme="dark"] .disclaimer {
+  background: rgba(240, 160, 32, 0.12);
+  color: #f0c07a;
+}

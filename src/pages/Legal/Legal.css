@@ -1,0 +1,33 @@
+.legal {
+  max-width: 780px;
+  margin: 0 auto;
+  width: 100%;
+}
+.legal__back { margin-bottom: 12px; }
+
+.legal__h1 { font-size: clamp(22px, 3vw, 28px); }
+
+.legal__sec { margin-top: 26px; }
+.legal__sec h2 {
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+.legal__sec p {
+  font-size: 14.5px;
+  line-height: 1.65;
+  margin-bottom: 10px;
+}
+.legal__sec p:last-child { margin-bottom: 0; }
+
+.legal__contact a {
+  display: inline-block;
+  padding: 8px 2px;
+  font-weight: 600;
+}
+.legal__contact {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-size: 13.5px;
+  color: var(--text-2);
+}
