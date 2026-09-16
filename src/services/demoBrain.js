@@ -14,8 +14,6 @@ const T = {
     who: "К какому специалисту",
     tail:
       "Это не диагноз. MedAI помогает разобраться в симптомах, но решение принимает врач.",
-    demoNote:
-      "_Демо-режим: ключ модели не подключён. Подключите переменную окружения — и ответы станут настоящими._",
     generic: [
       "Опишите, пожалуйста, подробнее: как давно это началось, что усиливает и что облегчает симптом.",
       "Есть ли температура, и если да — какая максимальная за последние сутки?",
@@ -30,8 +28,6 @@ const T = {
     who: "Qaysi mutaxassisga",
     tail:
       "Bu tashxis emas. MedAI simptomlarni tushunishga yordam beradi, qaror esa shifokorniki.",
-    demoNote:
-      "_Demo rejim: model kaliti ulanmagan. Muhit o'zgaruvchisini qo'shsangiz, javoblar haqiqiy bo'ladi._",
     generic: [
       "Iltimos, batafsilroq yozing: qachon boshlangan, nima kuchaytiradi va nima yengillashtiradi.",
       "Harorat bormi? Bo'lsa, oxirgi bir kunda eng yuqorisi qancha edi?",
@@ -46,8 +42,6 @@ const T = {
     who: "Which specialist",
     tail:
       "This is not a diagnosis. MedAI helps you make sense of symptoms — the decision is your doctor's.",
-    demoNote:
-      "_Demo mode: no model key connected. Add the environment variable and answers become real._",
     generic: [
       "Could you describe it in more detail: when it started, what makes it worse and what helps.",
       "Do you have a fever, and if so what was the highest reading in the last 24 hours?",
@@ -314,16 +308,16 @@ export async function demoReply(messages, lang = "ru", mode = "chat") {
 
   if (last?.image) {
     return {
-      ru: `На фото, судя по всему, упаковка лекарства.\n\nВ демо-режиме я не могу прочитать изображение — для этого нужен ключ модели с поддержкой зрения. Когда он подключён, MedAI распознаёт название, действующее вещество, дозировку и предупреждает о взаимодействии с тем, что вы уже принимаете.\n\n${t.demoNote}`,
-      uz: `Rasmda, ehtimol, dori qadog'i.\n\nDemo rejimda men rasmni o'qiy olmayman — buning uchun ko'rish qo'llab-quvvatlaydigan model kaliti kerak. U ulanganda MedAI nomini, ta'sir etuvchi moddani, dozani aniqlaydi va siz ichayotgan dorilar bilan mos kelishini tekshiradi.\n\n${t.demoNote}`,
-      en: `The photo appears to show a medicine package.\n\nIn demo mode I can't read images — that needs a vision-capable model key. Once connected, MedAI reads the name, active ingredient and dose, and flags interactions with what you already take.\n\n${t.demoNote}`,
+      ru: `На фото, судя по всему, упаковка лекарства.\n\nСейчас я не могу разобрать изображение. Напишите название препарата текстом — подскажу, от чего он, как обычно принимают и на что обратить внимание с учётом ваших аллергий.`,
+      uz: `Rasmda, ehtimol, dori qadog'i.\n\nHozir rasmni o'qiy olmayapman. Dori nomini matn bilan yozing — nima uchun ekanini, qanday ichilishini va allergiyangizni hisobga olib nimaga e'tibor berish kerakligini aytaman.`,
+      en: `The photo appears to show a medicine package.\n\nI can't read the image right now. Type the medicine name and I'll tell you what it is for, how it is usually taken, and what to watch out for given your allergies.`,
     }[lang];
   }
 
   const hit = PATTERNS.find((p) => p.words.some((w) => text.includes(w)));
 
   if (!hit) {
-    return `${t.intro}\n\n${t.ask}\n${bullets(t.generic)}\n\n_${t.tail}_\n\n${t.demoNote}`;
+    return `${t.intro}\n\n${t.ask}\n${bullets(t.generic)}\n\n_${t.tail}_`;
   }
 
   const d = hit[lang] || hit.ru;
@@ -340,7 +334,5 @@ export async function demoReply(messages, lang = "ru", mode = "chat") {
     d.who,
     "",
     `_${t.tail}_`,
-    "",
-    t.demoNote,
   ].join("\n");
 }
