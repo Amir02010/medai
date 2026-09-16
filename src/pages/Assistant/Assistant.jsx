@@ -15,6 +15,7 @@ import {
   MdOutlineShield,
   MdDeleteOutline,
   MdSearch,
+  MdTravelExplore,
 } from "react-icons/md";
 
 import AppShell from "../../components/Layout/AppShell";
@@ -96,8 +97,8 @@ export default function Assistant() {
     async (history, chatId) => {
       setBusy(true);
       try {
-        const { text, demo } = await askAI(history, { patient, lang });
-        pushMessage(chatId, { role: "ai", text });
+        const { text, demo, sources } = await askAI(history, { patient, lang });
+        pushMessage(chatId, { role: "ai", text, sources });
         if (demo && !demoNotified) {
           setDemoNotified(true);
           toast(t("assist.offline"), "info");
@@ -348,6 +349,24 @@ export default function Assistant() {
                     <div className="msg__bubble">
                       {m.image && <img className="msg__img" src={m.image} alt="" />}
                       {m.role === "user" ? m.text : <Markdown text={m.text} />}
+
+                      {m.role === "ai" && m.sources?.length > 0 && (
+                        <div className="msg__sources">
+                          <span className="msg__sourcesTitle">
+                            <MdTravelExplore size={14} />
+                            {t("assist.sources")}
+                          </span>
+                          <ol>
+                            {m.sources.map((s) => (
+                              <li key={s.url}>
+                                <a href={s.url} target="_blank" rel="noopener noreferrer">
+                                  {s.title}
+                                </a>
+                              </li>
+                            ))}
+                          </ol>
+                        </div>
+                      )}
                     </div>
                     {m.role === "ai" && (
                       <div className="msg__tools">

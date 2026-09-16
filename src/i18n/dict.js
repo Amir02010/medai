@@ -122,6 +122,7 @@ const uz = {
   "assist.redflag": "Bu belgilar shoshilinch yordam talab qilishi mumkin",
   "assist.redflagCta": "103 ga qo'ng'iroq qiling",
   "assist.offline": "AI server ulanmagan. Demo rejimda ishlayapti.",
+  "assist.sources": "Manbalar",
 
   "check.title": "Simptom tekshiruvi",
   "check.sub": "Qayerda og'riyapti? Tanadan tanlang.",
@@ -386,6 +387,7 @@ const ru = {
   "assist.redflag": "Эти признаки могут требовать срочной помощи",
   "assist.redflagCta": "Позвонить 103",
   "assist.offline": "ИИ-сервер не подключён. Работает демо-режим.",
+  "assist.sources": "Источники",
 
   "check.title": "Проверка симптомов",
   "check.sub": "Где болит? Выберите на теле.",
@@ -650,6 +652,7 @@ const en = {
   "assist.redflag": "These signs may need urgent care",
   "assist.redflagCta": "Call 103",
   "assist.offline": "AI server is not connected. Running in demo mode.",
+  "assist.sources": "Sources",
 
   "check.title": "Symptom checker",
   "check.sub": "Where does it hurt? Pick a spot.",

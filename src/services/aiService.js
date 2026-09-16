@@ -66,8 +66,9 @@ export async function askAI(messages, opts = {}) {
     }
 
     const data = await res.json();
-    if (data?.demo) return { text: data.reply, demo: true };
-    return { text: data.reply, demo: false };
+    const sources = Array.isArray(data?.sources) ? data.sources : [];
+    if (data?.demo) return { text: data.reply, demo: true, sources: [] };
+    return { text: data.reply, demo: false, sources };
   } catch (err) {
     if (process.env.NODE_ENV !== "production") {
       // eslint-disable-next-line no-console
